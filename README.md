@@ -1,3 +1,3 @@
 # DSA
 
-This Repo contains the questions solved
+This Repository contains the questions solved
