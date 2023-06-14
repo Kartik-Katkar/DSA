@@ -1,7 +1,7 @@
 <br>
 
 <p align="center">
-  <img src="./1.jpeg" alt="image"/>
+  <img src="./1.jpg" alt="image"/>
 </p>
 
 <br>
