@@ -1,0 +1,114 @@
+Q. Sort Colors
+
+Given an array nums with n objects colored red, white, or blue, sort them in-place so that objects of the same color are adjacent, with the colors in the order red, white, and blue.
+
+We will use the integers 0, 1, and 2 to represent the color red, white, and blue, respectively.
+
+You must solve this problem without using the library's sort function.
+
+ 
+
+Example 1:
+
+Input: nums = [2,0,2,1,1,0]
+Output: [0,0,1,1,2,2]
+Example 2:
+
+Input: nums = [2,0,1]
+Output: [0,1,2]
+ 
+
+Constraints:
+
+n == nums.length
+1 <= n <= 300
+nums[i] is either 0, 1, or 2.
+
+
+A. 
+
+
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+
+        //sort function stl approach
+        // sort(nums.begin(),nums.end());
+
+        int n = nums.size();
+
+        // Bubble Sort approach / Merge sort O(nlogn)
+
+//         for(int i = 0;i<n;++i)
+//         {
+//             for (int j = 0;j<n-i-1;++j)
+//             {
+// if(nums[j]>nums[j+1])
+// {
+// swap(nums[j],nums[j+1]);
+// }
+//             }
+//         }
+
+        // Better Approach O(2n)
+
+        // int zero=0,one=0,two=0;
+        // for(int i =0;i<n;i++)
+        // {
+            
+        //     if(nums[i]==0)
+        //     zero++;
+
+        //     else if(nums[i]==1)
+        //     one++;
+            
+        //     else
+        //     two++;
+        // }
+
+        // for(int j =0;j<n;j++)
+        // {
+        //     if(zero){
+        //       nums[j]=0;
+        //       zero--;
+        //     }
+        //     else if(one)
+        //     {
+        //         nums[j]=1;
+        //         one--;
+        //     }
+        //     else
+        //     {
+        //         nums[j]=2;
+        //         two--;
+        //     }
+        // }
+
+        // best optimal approach T.C O(n)
+        
+        int low=0,mid=0,high=n-1;
+
+        for(int i =0;i<n;i++)
+        {
+            if(nums[mid]==0)
+            {
+                swap(nums[mid],nums[low]);
+                low++;
+                mid++;
+            }
+            else if(nums[mid]==1)
+            {
+               mid++;
+            }
+            else
+            {
+                swap(nums[mid],nums[high]);
+                high--;
+            }
+
+        }
+
+    }
+
+};
+
