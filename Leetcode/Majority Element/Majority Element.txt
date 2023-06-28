@@ -1,0 +1,68 @@
+Q. Majority Element
+
+Given an array nums of size n, return the majority element.
+
+The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+
+ 
+
+Example 1:
+
+Input: nums = [3,2,3]
+Output: 3
+Example 2:
+
+Input: nums = [2,2,1,1,1,2,2]
+Output: 2
+ 
+
+Constraints:
+
+n == nums.length
+1 <= n <= 5 * 104
+-109 <= nums[i] <= 109
+
+
+A. 
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        
+       // Bruteforce 
+       // Pick each element and then scan through the entire array and check if count> n/2
+       // T.C = O(n2)
+
+       // Better Approach
+       // Hashing Store the number and the count of how many times that number appears
+       // T.C = O(nlogn) + O(n)
+       // S.c = O(n)
+       // (2,1) (3,4) etc
+
+       // Optimal Approach
+       // Moore's Voting Algorithm
+
+       int el = nums[0],cnt=1;
+       for(int i =1;i<nums.size();i++)
+       {
+           if(cnt){
+          if(nums[i]== el)
+          cnt++;
+
+          else
+          cnt--;
+
+           }
+           else
+           {
+               el = nums[i];
+               cnt++;
+           }
+
+       }
+
+
+           return el;
+    }
+};
+
