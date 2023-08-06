@@ -1,0 +1,78 @@
+Q. Majority Element II
+
+Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times.
+
+ 
+
+Example 1:
+
+Input: nums = [3,2,3]
+Output: [3]
+Example 2:
+
+Input: nums = [1]
+Output: [1]
+Example 3:
+
+Input: nums = [1,2]
+Output: [1,2]
+ 
+
+Constraints:
+
+1 <= nums.length <= 5 * 104
+-109 <= nums[i] <= 109
+
+A. 
+
+class Solution {
+public:
+    vector<int> majorityElement(vector<int>& nums) {
+        int count1=0,count2=0;
+        int e1=INT_MIN,e2=INT_MIN;
+        int n = nums.size();
+       
+
+         // applying the Extended Boyer Moore's Voting Algorithm:
+
+        for(int i=0;i<n;i++)
+        {
+            if(count1==0&&nums[i]!=e2)
+            {
+                count1=1;
+              e1=nums[i];
+            }
+            else if(count2==0&&nums[i]!=e1)
+            {
+                count2=1;
+                e2=nums[i];
+            }
+            else if(nums[i]==e1)
+            {
+                count1++;
+            }
+            else if(nums[i]==e2)
+            {
+                count2++;
+            }
+            else
+            {
+                count1--,count2--;
+            }
+        }
+
+         vector<int> ans;
+
+        count1=0,count2=0;
+        for(int i=0;i<n;i++)
+        {
+            if(nums[i]==e1)count1++;
+            if(nums[i]==e2)count2++;          
+        }
+
+        int m= int(n/3)+1;
+        if(count1>=m)ans.push_back(e1);
+        if(count2>=m)ans.push_back(e2);
+return ans;
+    }
+};
