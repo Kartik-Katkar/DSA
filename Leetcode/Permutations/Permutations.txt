@@ -28,33 +28,60 @@ A.
 
 class Solution {
 public:
-
-    void permutations(vector<int> &nums,vector<vector<int>> &ans,vector<int> &ds,int freq[])
+    
+    void permutations(int index,vector<int> &nums,vector<vector<int>> &ans)
     {
-       if(ds.size()==nums.size()){
-           ans.push_back(ds);
+       if(index==nums.size()){
+           ans.push_back(nums);
            return;
        }
 
-       for(int i =0;i<nums.size();i++)
+       for(int i =index;i<nums.size();i++) // i starts from index
        {
-           if(!freq[i])
-           {
-               ds.push_back(nums[i]);
-               freq[i]=1;
-               permutations(nums,ans,ds,freq);            
-               freq[i]=0;
-               ds.pop_back();
-           }
+          swap(nums[index],nums[i]);
+          permutations(index+1,nums,ans);
+          swap(nums[index],nums[i]);
        }
     }
+
     vector<vector<int>> permute(vector<int>& nums) {
         vector<vector<int>> ans;
-        vector<int> ds;
-        int freq[nums.size()];
-        for(int i=0;i<nums.size();i++) freq[i]=0;
-
-        permutations(nums,ans,ds,freq);
+        permutations(0,nums,ans);
         return ans;
     }
 };
+
+// using extra array
+
+// class Solution {
+// public:
+
+//     void permutations(vector<int> &nums,vector<vector<int>> &ans,vector<int> &ds,int freq[])
+//     {
+//        if(ds.size()==nums.size()){
+//            ans.push_back(ds);
+//            return;
+//        }
+
+//        for(int i =0;i<nums.size();i++)
+//        {
+//            if(!freq[i])
+//            {
+//                ds.push_back(nums[i]);
+//                freq[i]=1;
+//                permutations(nums,ans,ds,freq);            
+//                freq[i]=0;
+//                ds.pop_back();
+//            }
+//        }
+//     }
+//     vector<vector<int>> permute(vector<int>& nums) {
+//         vector<vector<int>> ans;
+//         vector<int> ds;
+//         int freq[nums.size()];
+//         for(int i=0;i<nums.size();i++) freq[i]=0;
+
+//         permutations(nums,ans,ds,freq);
+//         return ans;
+//     }
+// };
